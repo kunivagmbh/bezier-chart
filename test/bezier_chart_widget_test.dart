@@ -12,9 +12,9 @@ void main() {
     return tester.widget<MySingleChildScrollView>(
       find
           .descendant(
-            of: find.byType(BezierChart),
-            matching: find.byType(MySingleChildScrollView),
-          )
+        of: find.byType(BezierChart),
+        matching: find.byType(MySingleChildScrollView),
+      )
           .first,
     );
   }
@@ -23,19 +23,19 @@ void main() {
     return tester.widget<Container>(
       find
           .descendant(
-            of: find.byType(BezierChart),
-            matching: find.byType(Container),
-          )
+        of: find.byType(BezierChart),
+        matching: find.byType(Container),
+      )
           .first,
     );
   }
 
   Widget _buildWidget({
-    double height,
-    double width,
-    double contentWidth,
+    double? height,
+    double? width,
+    double? contentWidth,
     Color backgroundColor = Colors.white,
-    LinearGradient backgroundGradient,
+    LinearGradient? backgroundGradient,
   }) {
     return Center(
       child: Container(
@@ -74,7 +74,7 @@ void main() {
 
   testWidgets(
     'Test Size and Aligment',
-    (WidgetTester tester) async {
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         buildTestableWidget(
           _buildWidget(
@@ -95,7 +95,7 @@ void main() {
       final customPainter = align.child as CustomPaint;
       final localHorizontalPadding = 50.0;
       final localVerticalPercent = 0.75;
-      expect(scrollView.padding.horizontal, localHorizontalPadding * 2);
+      expect(scrollView.padding!.horizontal, localHorizontalPadding * 2);
       expect(customPainter.size.width, width - 2 * localHorizontalPadding);
       expect(customPainter.size.height, height * localVerticalPercent);
     },
@@ -103,7 +103,7 @@ void main() {
 
   testWidgets(
     'Test content Width',
-    (WidgetTester tester) async {
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         buildTestableWidget(
           _buildWidget(
@@ -129,7 +129,7 @@ void main() {
 
   testWidgets(
     'Test color/gradient configuration',
-    (WidgetTester tester) async {
+        (WidgetTester tester) async {
       final customColor = Color.fromRGBO(100, 100, 100, 1.0);
       final gradientColor = LinearGradient(
         colors: [Colors.white, Colors.red],
@@ -173,7 +173,7 @@ void main() {
 
   testWidgets(
     'Test series',
-    (WidgetTester tester) async {
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         buildTestableWidget(
           _buildWidget(
@@ -187,7 +187,7 @@ void main() {
 
       final state = tester.state(find.byType(BezierChart)) as BezierChartState;
       expect(state.computedSeries.length, 1);
-      expect(state.computedSeries.first.data.length, 4);
+      expect(state.computedSeries.first.data!.length, 4);
     },
   );
 }
