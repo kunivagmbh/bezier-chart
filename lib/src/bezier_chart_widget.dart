@@ -1433,14 +1433,10 @@ class _BezierChartPainter extends CustomPainter {
         return "${dateFormat.format(_currentXDataPoint!.xAxis)}\n";
       }
     } else if (scale == BezierChartScale.MONTHLY) {
-      final dateFormat = intl.DateFormat('MMM y');
+      final dateFormat = intl.DateFormat('MMM y', 'de');
       final date = _currentXDataPoint!.xAxis as DateTime;
       final now = DateTime.now();
-      if (date.year == now.year && now.month == date.month) {
-        return "Current Month\n";
-      } else {
-        return "${dateFormat.format(_currentXDataPoint!.xAxis)}\n";
-      }
+      return "${dateFormat.format(_currentXDataPoint!.xAxis)}\n";
     } else if (scale == BezierChartScale.YEARLY) {
       final dateFormat = intl.DateFormat('y');
       final date = _currentXDataPoint!.xAxis as DateTime;
@@ -1471,7 +1467,7 @@ class _BezierChartPainter extends CustomPainter {
       final dateFormat = intl.DateFormat('EEE\nd');
       return "${dateFormat.format(dataPoint.xAxis as DateTime)}";
     } else if (scale == BezierChartScale.MONTHLY) {
-      final dateFormat = intl.DateFormat('MMM');
+      final dateFormat = intl.DateFormat('MMM', 'de');
       final dateFormatYear = intl.DateFormat('y');
       final year = dateFormatYear.format(dataPoint.xAxis as DateTime).substring(2);
       return "${dateFormat.format(dataPoint.xAxis as DateTime)}\n'$year";
